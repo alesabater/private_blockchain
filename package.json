@@ -1,0 +1,22 @@
+{
+  "name": "notary",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "author": "",
+  "scripts": {
+    "test": "mocha"
+  },
+  "license": "ISC",
+  "dependencies": {
+    "bitcoinjs-lib": "^4.0.3",
+    "bitcoinjs-message": "^2.0.0",
+    "body-parser": "^1.18.3",
+    "chai": "^4.3.4",
+    "crypto-js": "^3.1.9-1",
+    "express": "^4.16.4",
+    "hex2ascii": "0.0.3",
+    "mocha": "^8.4.0",
+    "morgan": "^1.9.1"
+  }
+}
