@@ -40,21 +40,13 @@ class Block {
         return new Promise((resolve, reject) => {
             // Save in auxiliary variable the current block hash
             var hash = self.hash
+            const { height, body, time, previousBlockHash } = this;
                                             
             // Recalculate the hash of the Block  
-            var blockh = sha256(self)  
+            var blockh =  SHA256(JSON.stringify({ height, body, time, previousBlockHash})).toString();;
 
             // Comparing if the hashes changed
-            if (hash ==  blockh) {
-                // Returning the Block is valid
-                console.log("The hashes are the same")
-                resolve(true)
-            } else {
-                // Returning the Block is not valid
-                console.log("The hashes are NOT the same")
-                resolve(false);
-            }     
-
+            hash == blockh ? resolve(true) : resolve(false);
         });
     }
 
@@ -88,6 +80,11 @@ class Block {
         }
         return decoded
 
+    }
+
+    calculateHash() {
+        const { height, body, time, previousBlockHash } = this;
+        this.hash = SHA256(JSON.stringify({ height, body, time, previousBlockHash })).toString();
     }
 
 }

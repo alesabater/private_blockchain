@@ -2,6 +2,8 @@
  *          BlockchainController
  *       (Do not change this code)
  * 
+ * 
+ * 
  * This class expose the endpoints that the client applications will use to interact with the 
  * Blockchain dataset
  */
@@ -17,6 +19,7 @@ class BlockchainController {
         this.submitStar();
         this.getBlockByHash();
         this.getStarsByOwner();
+        this.validateChain();
     }
 
     // Enpoint to Get a Block by Height (GET Endpoint)
@@ -50,6 +53,18 @@ class BlockchainController {
                 }
             } else {
                 return res.status(500).send("Check the Body Parameter!");
+            }
+        });
+    }
+
+    // Endpoint that allows user to validate the chain (GET request)
+    validateChain() {
+        this.app.get("/validateChain", async (req, res) => {
+            const errors = await this.blockchain.validateChain();
+            if(errors.length > 0){
+                return res.status(500).json("The chain is invalid");
+            } else {
+                return res.status(200).send("Chain validated successfully!");
             }
         });
     }
